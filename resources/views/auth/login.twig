@@ -20,16 +20,14 @@
                                         <input type="email" name="email" class="form-control form-control-lg {{ errors.email ? 'is-invalid' : '' }}"
                                                value="{{ old.email }}"
                                                placeholder="Email"
-                                               required> />
+                                               required />
                                         <div class="invalid-feedback">
                                             {{ errors.email | first }}
                                         </div>
                                     </div>
                                     <div class="form-outline form-white mb-1">
                                         <input type="password" name="password" class="form-control form-control-lg {{ errors.password ? 'is-invalid' : '' }}"
-                                               value="{{ old.password }}"
-                                               placeholder="Password"
-                                               required />
+                                               placeholder="Password" required />
                                         <div class="invalid-feedback">
                                             {{ errors.password | first }}
                                         </div>
