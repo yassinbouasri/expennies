@@ -13,4 +13,12 @@ interface SessionInterface
 
     public function isActive(): bool;
 
+    public function get(string $key, mixed $default = null): mixed;
+
+    public function regenerate(): bool;
+
+    public function put(string $key, mixed $value): void;
+
+    public function forget(string $key): void;
+
 }

@@ -33,7 +33,13 @@ class Session implements SessionInterface
             ]
         );
 
-        session_start();
+        if (! empty($this->options->name)) {
+            session_name($this->options->name);
+        }
+
+        if(!session_start()){
+            throw new SessionException('Failed to start session');
+        }
     }
 
     public function save(): void
@@ -44,5 +50,29 @@ class Session implements SessionInterface
     public function isActive(): bool
     {
         return session_status() === PHP_SESSION_ACTIVE;
+    }
+
+    public function get(string $key, mixed $default = null): mixed
+    {
+        return $this->has($key) ? $_SESSION[$key] : $default;
+    }
+
+    public function regenerate(): bool
+    {
+        return session_regenerate_id(true);
+    }
+
+    public function put(string $key, mixed $value): void
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function forget(string $key): void
+    {
+       unset($_SESSION[$key]);
+    }
+    public function has(string $key): bool
+    {
+        return array_key_exists($key, $_SESSION);
     }
 }
