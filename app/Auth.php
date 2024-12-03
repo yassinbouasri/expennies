@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App;
 
@@ -8,14 +8,16 @@ use App\Contracts\AuthInterface;
 use App\Contracts\SessionInterface;
 use App\Contracts\UserInterface;
 use App\Contracts\UserProviderServiceInterface;
-use App\DataObject\RegisterUserData;
+use App\DataObjects\RegisterUserData;
 
 class Auth implements AuthInterface
 {
     private ?UserInterface $user = null;
 
-    public function __construct(private readonly UserProviderServiceInterface $userProvider, private readonly SessionInterface $session)
-    {
+    public function __construct(
+        private readonly UserProviderServiceInterface $userProvider,
+        private readonly SessionInterface $session
+    ) {
     }
 
     public function user(): ?UserInterface
@@ -26,24 +28,26 @@ class Auth implements AuthInterface
 
         $userId = $this->session->get('user');
 
-        if (!$userId) {
+        if (! $userId) {
             return null;
         }
 
         $user = $this->userProvider->getById($userId);
 
-        if (!$user) {
+        if (! $user) {
             return null;
         }
-        $this->user = $user;
-        return $this->user;
 
+        $this->user = $user;
+
+        return $this->user;
     }
 
     public function attemptLogin(array $credentials): bool
     {
         $user = $this->userProvider->getByCredentials($credentials);
-        if (!$user || !$this->checkCredentials($user, $credentials)) {
+
+        if (! $user || ! $this->checkCredentials($user, $credentials)) {
             return false;
         }
 
@@ -57,20 +61,12 @@ class Auth implements AuthInterface
         return password_verify($credentials['password'], $user->getPassword());
     }
 
-    public function logIn(UserInterface $user): void
-    {
-        $this->session->regenerate();
-
-        $this->session->put('user', $user->getId());
-        $this->user = $user;
-    }
-
     public function logOut(): void
     {
         $this->session->forget('user');
         $this->session->regenerate();
-        $this->user = null;
 
+        $this->user = null;
     }
 
     public function register(RegisterUserData $data): UserInterface
@@ -80,5 +76,13 @@ class Auth implements AuthInterface
         $this->logIn($user);
 
         return $user;
+    }
+
+    public function logIn(UserInterface $user): void
+    {
+        $this->session->regenerate();
+        $this->session->put('user', $user->getId());
+
+        $this->user = $user;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataObject;
+namespace App\DataObjects;
 
 class RegisterUserData
 {

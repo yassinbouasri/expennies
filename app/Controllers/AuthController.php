@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use App\Contracts\AuthInterface;
 use App\Contracts\RequestValidatorFactoryInterface;
-use App\DataObject\RegisterUserData;
+use App\DataObjects\RegisterUserData;
 use App\Exception\ValidationException;
 use App\RequestValidators\RegisterUserRequestValidator;
 use App\RequestValidators\UserLoginRequestValidator;
@@ -44,9 +44,11 @@ class AuthController
 
     public function logIn(Request $request, Response $response): Response
     {
-        $data = $this->requestValidatorFactory->make(UserLoginRequestValidator::class)->validate($request->getParsedBody());
+        $data = $this->requestValidatorFactory->make(UserLoginRequestValidator::class)->validate(
+            $request->getParsedBody()
+        );
 
-        if (!$this->auth->attemptLogin($data)) {
+        if (! $this->auth->attemptLogin($data)) {
             throw new ValidationException(['password' => ['You have entered an invalid username or password']]);
         }
 

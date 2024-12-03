@@ -8,7 +8,7 @@ use App\Contracts\AuthInterface;
 use App\Contracts\RequestValidatorFactoryInterface;
 use App\Contracts\SessionInterface;
 use App\Contracts\UserProviderServiceInterface;
-use App\DataObject\SessionConfig;
+use App\DataObjects\SessionConfig;
 use App\Enum\AppEnvironment;
 use App\Enum\SameSite;
 use App\RequestValidators\RequestValidatorFactory;
