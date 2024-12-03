@@ -1,16 +1,16 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Auth;
 use App\Contracts\AuthInterface;
+use App\DataObject\RegisterUserData;
 use App\Entity\User;
 use App\Exception\ValidationException;
 use Doctrine\ORM\EntityManager;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 use Valitron\Validator;
 
@@ -39,27 +39,17 @@ class AuthController
         $v->rule('required', ['name', 'email', 'password', 'confirmPassword']);
         $v->rule('email', 'email');
         $v->rule('equals', 'confirmPassword', 'password')->label('Confirm Password');
-        $v->rule(
-            fn($field, $value, $params, $fields) => ! $this->entityManager->getRepository(User::class)->count(
-                ['email' => $value]
-            ),
-            'email'
-        )->message('User with the given email address already exists');
+        $v->rule(fn($field, $value, $params, $fields) => !$this->entityManager->getRepository(User::class)->count(['email' => $value]), 'email')->message('User with the given email address already exists');
 
-        if (! $v->validate()) {
+        if (!$v->validate()) {
             throw new ValidationException($v->errors());
         }
 
-        $user = new User();
+        $this->auth->register(
+            new RegisterUserData($data['name'], $data['email'], $data['password'])
+        );
 
-        $user->setName($data['name']);
-        $user->setEmail($data['email']);
-        $user->setPassword(password_hash($data['password'], PASSWORD_BCRYPT, ['cost' => 12]));
-
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-
-        return $response;
+        return $response->withHeader('Location', '/')->withStatus(302);
     }
 
     public function logIn(Request $request, Response $response): Response
@@ -71,7 +61,7 @@ class AuthController
         $v->rule('required', ['name', 'email']);
         $v->rule('email', 'email');
 
-        if(!$this->auth->attemptLogin($data)){
+        if (!$this->auth->attemptLogin($data)) {
             throw new ValidationException(['password' => ['You have entered an invalid username or password']]);
         }
 
