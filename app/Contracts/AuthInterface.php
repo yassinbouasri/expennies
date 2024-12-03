@@ -12,7 +12,7 @@ interface AuthInterface
 
     public function attemptLogin(array $data): bool;
 
-    public function checkCrdentials(UserInterface $user, array $credentials): bool;
+    public function checkCredentials(UserInterface $user, array $credentials): bool;
 
     public function logOut(): void;
 

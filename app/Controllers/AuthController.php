@@ -9,16 +9,18 @@ use App\Contracts\RequestValidatorFactoryInterface;
 use App\DataObject\RegisterUserData;
 use App\Exception\ValidationException;
 use App\RequestValidators\RegisterUserRequestValidator;
-use App\RequestValidators\UserLoginValidator;
+use App\RequestValidators\UserLoginRequestValidator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
-use Valitron\Validator;
 
 class AuthController
 {
-    public function __construct(private readonly Twig $twig, private readonly RequestValidatorFactoryInterface $requestValidatorFactory, private readonly AuthInterface $auth)
-    {
+    public function __construct(
+        private readonly Twig $twig,
+        private readonly RequestValidatorFactoryInterface $requestValidatorFactory,
+        private readonly AuthInterface $auth
+    ){
     }
 
     public function loginView(Request $request, Response $response): Response
@@ -42,7 +44,7 @@ class AuthController
 
     public function logIn(Request $request, Response $response): Response
     {
-        $data =$this->requestValidatorFactory->make(UserLoginValidator::class)->validate($request->getParsedBody());
+        $data = $this->requestValidatorFactory->make(UserLoginRequestValidator::class)->validate($request->getParsedBody());
 
         if (!$this->auth->attemptLogin($data)) {
             throw new ValidationException(['password' => ['You have entered an invalid username or password']]);

@@ -5,7 +5,7 @@ declare(strict_types = 1);
 use App\Auth;
 use App\Config;
 use App\Contracts\AuthInterface;
-use App\Contracts\RequestValidatorInterface;
+use App\Contracts\RequestValidatorFactoryInterface;
 use App\Contracts\SessionInterface;
 use App\Contracts\UserProviderServiceInterface;
 use App\DataObject\SessionConfig;
@@ -17,11 +17,9 @@ use App\Session;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
-use Slim\Psr7\Factory\RequestFactory;
 use Slim\Views\Twig;
 use Symfony\Bridge\Twig\Extension\AssetExtension;
 use Symfony\Component\Asset\Package;
@@ -89,7 +87,7 @@ return [
             SameSite::from($config->get('session.samesite', 'lax')),
         )
     ),
-    RequestFactoryInterface::class => fn (ContainerInterface $container) => $container->get(
+    RequestValidatorFactoryInterface::class => fn (ContainerInterface $container) => $container->get(
         RequestValidatorFactory::class
     )
 ];
