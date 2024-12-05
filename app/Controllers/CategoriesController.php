@@ -20,6 +20,13 @@ class CategoriesController
         return $this->twig->render($response,'categories/index.twig');
     }
 
+    public function store(Request $request,Response $response): Response
+    {
+        return $response->withHeader('Location', '/categories')->withStatus(302);
+    }
 
-
+    public function delete(Request $request,Response $response): Response
+    {
+        return $response->withHeader('Location', '/categories')->withStatus(302);
+    }
 }
