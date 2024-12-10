@@ -9,22 +9,22 @@ use App\DataObjects\DataTableQueryParams;
 use App\DataObjects\TransactionData;
 use App\Entity\Transaction;
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class TransactionService
 {
 
-    public function __construct(private readonly EntityManagerInterface $entityManager)
+    public function __construct(private readonly EntityManager $entityManager)
     {
     }
 
     public function create(TransactionData $transactionData, User $user)
     {
         $transaction = new Transaction();
-        
+
         $transaction->setUser($user);
-        
+
         return $this->update($transaction, $transactionData);
 
     }
@@ -55,15 +55,16 @@ class TransactionService
         $this->entityManager->flush();
     }
 
-    public function getPaginatedTransaction(DataTableQueryParams $params)
+    public function getPaginatedTransaction(DataTableQueryParams $params): Paginator
     {
         $query = $this->entityManager
             ->getRepository(Transaction::class)
             ->createQueryBuilder('t')
+            ->leftJoin('t.category', 'c')
             ->setFirstResult($params->start)
             ->setMaxResults($params->length);
 
-        $orderBy = in_array($params->orderBy, ['description', 'amount', 'date'])
+        $orderBy = in_array($params->orderBy, ['description', 'amount', 'date', 'category'])
             ? $params->orderBy
             : 'date';
 
@@ -73,8 +74,12 @@ class TransactionService
             $query->where('t.description LIKE :description')
                 ->setParameter('description', '%'. addcslashes($params->searchTerm, '%_').'%');
         }
-
-        $query->orderBy('t.'.$orderBy, $sortDir);
+        if ( $orderBy === 'category') {
+            $query->orderBy('c.name', $sortDir);
+        } else {
+            $query->orderBy('t.'.$orderBy, $sortDir);
+        }
+        error_log($query->getQuery()->getSQL());
 
         return new Paginator($query);
     }

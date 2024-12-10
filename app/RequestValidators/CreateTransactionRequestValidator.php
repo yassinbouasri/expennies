@@ -33,7 +33,7 @@ class CreateTransactionRequestValidator implements RequestValidatorInterface
             }
             $category = $this->categoryService->getById($id);
 
-            if (! $category){
+            if ( $category){
                 $data['category'] = $category;
 
                 return true;
