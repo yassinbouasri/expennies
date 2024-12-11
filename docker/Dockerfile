@@ -12,10 +12,11 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     vim \
-    libicu-dev
+    libicu-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
-    && apt-get install nodejs -y
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash \
+    && apt-get install -y nodejs
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -28,7 +29,7 @@ RUN pecl install xdebug \
 COPY xdebug.ini "${PHP_INI_DIR}/conf.d"
 
 RUN groupadd --force -g $GROUP_ID $USER
-RUN useradd -ms /bin/bash --no-user-group -g $GROUP_ID -u 1337 $USER
-RUN usermod -u $USER_ID $USER
+RUN useradd -ms /bin/bash --no-user-group -g $GROUP_ID -u $USER_ID $USER
+RUN chown -R $USER:$GROUP_ID /var/www
 
 USER $USER
