@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace App\RequestValidators;
 
@@ -12,44 +11,36 @@ use Psr\Http\Message\UploadedFileInterface;
 
 class TransactionImportRequestValidator implements RequestValidatorInterface
 {
-
     public function validate(array $data): array
     {
         /** @var UploadedFileInterface $uploadedFile */
-        $uploadedFile = $data['receipt'] ?? null;
+        $uploadedFile = $data['importFile'] ?? null;
 
         if (! $uploadedFile) {
-            throw new ValidationException(['receipt' => ['Please select a receipt file']]);
+            throw new ValidationException(['importFile' => ['Please select a file to import']]);
         }
 
         if ($uploadedFile->getError() !== UPLOAD_ERR_OK) {
-            throw new ValidationException(['receipt' => ['Failed to upload the receipt file']]);
+            throw new ValidationException(['importFile' => ['Failed to upload the file for import']]);
         }
 
-        $maxFileSize = 5 * 1024 * 1024;
+        $maxFileSize = 20 * 1024 * 1024;
 
         if ($uploadedFile->getSize() > $maxFileSize) {
-            throw new ValidationException(['receipt' => ['Maximum allowed size is 5 MB']]);
+            throw new ValidationException(['importFile' => ['Maximum allowed size is 20 MB']]);
         }
 
-        $filename = $uploadedFile->getClientFilename();
-
-        if (! preg_match('/^[a-zA-Z0-9\s._-]+$/', $filename)) {
-            throw new ValidationException(['receipt' => ['Invalid filename']]);
-        }
-
-        $allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-        $tmpFilePath      = $uploadedFile->getStream()->getMetadata('uri');
+        $allowedMimeTypes = ['text/csv'];
 
         if (! in_array($uploadedFile->getClientMediaType(), $allowedMimeTypes)) {
-            throw new ValidationException(['receipt' => ['Receipt has to be either an image or a pdf document']]);
+            throw new ValidationException(['importFile' => ['Please select a CSV file to import']]);
         }
 
         $detector = new FinfoMimeTypeDetector();
-        $mimeType = $detector->detectMimeTypeFromFile($tmpFilePath);
+        $mimeType = $detector->detectMimeTypeFromFile($uploadedFile->getStream()->getMetadata('uri'));
 
         if (! in_array($mimeType, $allowedMimeTypes)) {
-            throw new ValidationException(['receipt' => ['Invalid file type']]);
+            throw new ValidationException(['importFile' => ['Invalid file type']]);
         }
 
         return $data;

@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="Download transaction receipts">
-      <change afterPath="$PROJECT_DIR$/app/Controllers/TransactionImporterController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/RequestValidators/TransactionImportRequestValidator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/transactions_sample.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/transactions/import_transactions_modal.twig" afterDir="false" />
+    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="importing transactions from csv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/TransactionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DataObjects/TransactionData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataObjects/TransactionData.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/TransactionImporterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/TransactionImporterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity/Receipt.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Receipt.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Entity/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/CategoryService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/CategoryService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/transactions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transactions/index.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transactions/index.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/RequestValidators/TransactionImportRequestValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/RequestValidators/TransactionImportRequestValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/transactions/import_transaction_modal.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +145,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "P22__Yassin",
-    "last_opened_file_path": "/Users/yassin/My Files/coding/expennies",
+    "last_opened_file_path": "/Users/yassin/My Files/coding/expennies/app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -165,6 +162,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/resources/views/transactions" />
       <recent name="$PROJECT_DIR$/resources/js" />
@@ -223,7 +221,7 @@
       <workItem from="1733941848443" duration="780000" />
       <workItem from="1734024470483" duration="5653000" />
       <workItem from="1734048018184" duration="409000" />
-      <workItem from="1734105226483" duration="3890000" />
+      <workItem from="1734105226483" duration="6269000" />
     </task>
     <task id="LOCAL-00004" summary="Secure sorting and filtering">
       <option name="closed" value="true" />
@@ -401,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734107665274</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="importing transactions from csv">
+      <option name="closed" value="true" />
+      <created>1734109769070</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1734109769070</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,6 +423,7 @@
     <MESSAGE value="Opem transaction receipts" />
     <MESSAGE value="Upload transaction receipts" />
     <MESSAGE value="Download transaction receipts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Download transaction receipts" />
+    <MESSAGE value="importing transactions from csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="importing transactions from csv" />
   </component>
 </project>

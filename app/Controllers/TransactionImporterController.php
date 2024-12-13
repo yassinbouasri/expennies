@@ -12,6 +12,7 @@ use App\Services\CategoryService;
 use App\Services\TransactionService;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\UploadedFileInterface;
 
 class TransactionImporterController
 {
@@ -23,23 +24,24 @@ class TransactionImporterController
     {
     }
 
-    public function import(Response $response, Request $request): Response
+    public function import(Request $request, Response $response): Response
     {
+        /** @var UploadedFileInterface $file */
         $file = $this->requestValidatorFactory->make(TransactionImportRequestValidator::class)->validate(
             $request->getUploadedFiles()
-        )['importFIle'];
+        )['importFile'];
 
-        $user = $request->getAttribute('user');
-        $resource = fopen($file->getStream()->getMetaData('uri'), 'r');
+        $user     = $request->getAttribute('user');
+        $resource = fopen($file->getStream()->getMetadata('uri'), 'r');
 
         fgetcsv($resource);
 
         while (($row = fgetcsv($resource)) !== false) {
             [$date, $description, $category, $amount] = $row;
 
-            $date = new \DateTime($date);
+            $date     = new \DateTime($date);
             $category = $this->categoryService->findByName($category);
-            $amount = str_replace(['$',','], '', $amount);
+            $amount   = str_replace(['$', ','], '', $amount);
 
             $transactionData = new TransactionData($description, (float) $amount, $date, $category);
 

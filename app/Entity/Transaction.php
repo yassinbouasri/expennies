@@ -111,7 +111,7 @@ class Transaction
 
     public function setCategory(?Category $category): Transaction
     {
-        $category->addTransaction($this);
+        $category?->addTransaction($this);
 
         $this->category = $category;
 

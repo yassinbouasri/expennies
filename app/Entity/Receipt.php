@@ -1,10 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Entity;
 
-use DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -24,23 +23,14 @@ class Receipt
     #[Column(name: 'storage_filename')]
     private string $storageFilename;
 
-    #[column(name: 'media_type')]
+    #[Column(name: 'media_type')]
     private string $mediaType;
+
     #[Column(name: 'created_at')]
-    private DateTime $createdAt;
+    private \DateTime $createdAt;
+
     #[ManyToOne(inversedBy: 'receipts')]
     private Transaction $transaction;
-
-    public function getMediaType(): string
-    {
-        return $this->mediaType;
-    }
-
-    public function setMediaType(string $mediaType): Receipt
-    {
-        $this->mediaType = $mediaType;
-        return $this;
-    }
 
     public function getId(): int
     {
@@ -59,12 +49,12 @@ class Receipt
         return $this;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTime $createdAt): Receipt
+    public function setCreatedAt(\DateTime $createdAt): Receipt
     {
         $this->createdAt = $createdAt;
 
@@ -93,6 +83,18 @@ class Receipt
     public function setStorageFilename(string $storageFilename): Receipt
     {
         $this->storageFilename = $storageFilename;
+
+        return $this;
+    }
+
+    public function getMediaType(): string
+    {
+        return $this->mediaType;
+    }
+
+    public function setMediaType(string $mediaType): Receipt
+    {
+        $this->mediaType = $mediaType;
 
         return $this;
     }
