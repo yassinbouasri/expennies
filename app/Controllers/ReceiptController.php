@@ -42,15 +42,15 @@ class ReceiptController
 
         $this->filesystem->write('receipts/' . $randomFilename, $file->getStream()->getContents());
 
-        $this->receiptService->create($transaction, $filename, $randomFilename);
+        $this->receiptService->create($transaction, $filename, $randomFilename, $file->getClientFilename());
 
         return $response;
     }
 
     public function download(Request $request, Response $response, array $args): Response
     {
-        $transactionId = $args['transactionId'];
-        $receiptId = (int) $args['receiptId'];
+        $transactionId =(int) $args['transactionId'];
+        $receiptId = (int) $args['id'];
 
         if (! $transactionId || ! $this->receiptService->getById($transactionId)) {
             return $response->withStatus(404);
@@ -68,7 +68,7 @@ class ReceiptController
         $response = $response->withHeader(
             'Content-Disposition',
             'inline; filename="'. $receipt->getFilename() .'"'
-        )->withHeader('Content-Type', $mediaType);
+        )->withHeader('Content-Type', $receipt->getMediaType());
         return $response->withBody(new Stream($file));
     }
 

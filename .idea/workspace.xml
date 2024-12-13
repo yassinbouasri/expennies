@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="Upload transaction receipts">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="Download transaction receipts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Receipt.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Receipt.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/RequestValidators/UploadReceiptRequestValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/RequestValidators/UploadReceiptRequestValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/ReceiptService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ReceiptService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="P20_Yassin2" />
+        <entry key="$PROJECT_DIR$" value="P21_Starty" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -137,25 +135,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;P21__Starty&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/yassin/My Files/coding/expennies&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "P21__Starty2",
+    "last_opened_file_path": "/Users/yassin/My Files/coding/expennies",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -216,7 +214,7 @@
       <workItem from="1733941848443" duration="780000" />
       <workItem from="1734024470483" duration="5653000" />
       <workItem from="1734048018184" duration="409000" />
-      <workItem from="1734105226483" duration="1247000" />
+      <workItem from="1734105226483" duration="1952000" />
     </task>
     <task id="LOCAL-00004" summary="Secure sorting and filtering">
       <option name="closed" value="true" />
@@ -378,7 +376,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734048036306</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Download transaction receipts">
+      <option name="closed" value="true" />
+      <created>1734106780768</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1734106780768</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,6 +399,7 @@
     <MESSAGE value="Transactions crud operations" />
     <MESSAGE value="Opem transaction receipts" />
     <MESSAGE value="Upload transaction receipts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upload transaction receipts" />
+    <MESSAGE value="Download transaction receipts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Download transaction receipts" />
   </component>
 </project>
