@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="importing transactions from csv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/TransactionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/TransactionImporterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/TransactionImporterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Receipt.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Receipt.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/RequestValidators/TransactionImportRequestValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/RequestValidators/TransactionImportRequestValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/transactions/import_transaction_modal.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +214,7 @@
       <workItem from="1733941848443" duration="780000" />
       <workItem from="1734024470483" duration="5653000" />
       <workItem from="1734048018184" duration="409000" />
-      <workItem from="1734105226483" duration="6269000" />
+      <workItem from="1734105226483" duration="7170000" />
     </task>
     <task id="LOCAL-00004" summary="Secure sorting and filtering">
       <option name="closed" value="true" />
@@ -407,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734109769070</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="importing transactions from csv">
+      <option name="closed" value="true" />
+      <created>1734112165924</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1734112165924</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
