@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="Download transaction receipts">
+      <change afterPath="$PROJECT_DIR$/app/Controllers/TransactionImporterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/RequestValidators/TransactionImportRequestValidator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/transactions_sample.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/transactions/import_transactions_modal.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/ReceiptService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ReceiptService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/TransactionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataObjects/TransactionData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataObjects/TransactionData.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/CategoryService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/CategoryService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/transactions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/transactions/index.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transactions/index.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="P21_Starty" />
+        <entry key="$PROJECT_DIR$" value="P21_Starty2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -138,7 +147,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "P21__Starty2",
+    "git-widget-placeholder": "P22__Yassin",
     "last_opened_file_path": "/Users/yassin/My Files/coding/expennies",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -157,8 +166,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/resources/js" />
       <recent name="$PROJECT_DIR$/resources/views/transactions" />
+      <recent name="$PROJECT_DIR$/resources/js" />
     </key>
   </component>
   <component name="RunManager">
@@ -214,7 +223,7 @@
       <workItem from="1733941848443" duration="780000" />
       <workItem from="1734024470483" duration="5653000" />
       <workItem from="1734048018184" duration="409000" />
-      <workItem from="1734105226483" duration="1952000" />
+      <workItem from="1734105226483" duration="3890000" />
     </task>
     <task id="LOCAL-00004" summary="Secure sorting and filtering">
       <option name="closed" value="true" />
@@ -384,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734106780768</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Download transaction receipts">
+      <option name="closed" value="true" />
+      <created>1734107665274</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1734107665274</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
