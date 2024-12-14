@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="delete transaction's receipt">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="Clockwork">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/container/container_bindings.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/container/container_bindings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configs/middleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/middleware.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +216,7 @@
       <workItem from="1734024470483" duration="5653000" />
       <workItem from="1734048018184" duration="409000" />
       <workItem from="1734105226483" duration="7577000" />
-      <workItem from="1734183700027" duration="1524000" />
+      <workItem from="1734183700027" duration="2120000" />
     </task>
     <task id="LOCAL-00004" summary="Secure sorting and filtering">
       <option name="closed" value="true" />
@@ -430,7 +426,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734130323369</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Clockwork">
+      <option name="closed" value="true" />
+      <created>1734185430958</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1734185430958</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Clockwork">
+      <option name="closed" value="true" />
+      <created>1734185571337</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1734185571337</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,6 +460,7 @@
     <MESSAGE value="Download transaction receipts" />
     <MESSAGE value="importing transactions from csv" />
     <MESSAGE value="delete transaction's receipt" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete transaction's receipt" />
+    <MESSAGE value="Clockwork" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clockwork" />
   </component>
 </project>

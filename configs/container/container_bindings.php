@@ -66,7 +66,7 @@ return [
 
         return new EntityManager(
             DriverManager::getConnection($config->get('doctrine.connection'), $ormConfig),
-            $ormConfig,
+            $ormConfig
         );
     },
     Twig::class                             => function (Config $config, ContainerInterface $container) {
@@ -120,7 +120,6 @@ return [
 
         return new League\Flysystem\Filesystem($adapter);
     },
-
     Clockwork::class => function(EntityManager $entityManager) {
         $clockwork = new Clockwork();
 
