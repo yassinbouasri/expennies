@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="importing transactions from csv">
+    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="delete transaction's receipt">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/ReceiptController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/container/container_bindings.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/container/container_bindings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/middleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/middleware.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="P21_Starty2" />
+        <entry key="$PROJECT_DIR$" value="P22_Yassin" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -124,6 +128,7 @@
       <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem-local" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/vendor/itsgoingd/clockwork" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -134,25 +139,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "P22__Yassin",
-    "last_opened_file_path": "/Users/yassin/My Files/coding/expennies/app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "php.override.implement.member.chooser.php.doc": "NONE",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;P23__Yassin&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yassin/My Files/coding/expennies/app&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app" />
@@ -214,7 +219,8 @@
       <workItem from="1733941848443" duration="780000" />
       <workItem from="1734024470483" duration="5653000" />
       <workItem from="1734048018184" duration="409000" />
-      <workItem from="1734105226483" duration="7170000" />
+      <workItem from="1734105226483" duration="7577000" />
+      <workItem from="1734183700027" duration="1524000" />
     </task>
     <task id="LOCAL-00004" summary="Secure sorting and filtering">
       <option name="closed" value="true" />
@@ -408,7 +414,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734112165924</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="delete transaction's receipt">
+      <option name="closed" value="true" />
+      <created>1734130310532</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1734130310533</updated>
+    </task>
+    <task id="LOCAL-00029" summary="delete transaction's receipt">
+      <option name="closed" value="true" />
+      <created>1734130323369</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1734130323369</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,6 +447,7 @@
     <MESSAGE value="Upload transaction receipts" />
     <MESSAGE value="Download transaction receipts" />
     <MESSAGE value="importing transactions from csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="importing transactions from csv" />
+    <MESSAGE value="delete transaction's receipt" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete transaction's receipt" />
   </component>
 </project>
