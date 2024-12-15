@@ -7,11 +7,8 @@ namespace App\Services;
 use App\Entity\Receipt;
 use Doctrine\ORM\EntityManager;
 
-class ReceiptService
+class ReceiptService extends EntityManagerService
 {
-    public function __construct(private readonly EntityManager $entityManager)
-    {
-    }
 
     public function create($transaction, string $filename, string $storageFilename, string $mediaType): Receipt
     {
@@ -24,7 +21,6 @@ class ReceiptService
         $receipt->setCreatedAt(new \DateTime());
 
         $this->entityManager->persist($receipt);
-        $this->entityManager->flush();
 
         return $receipt;
     }
@@ -37,6 +33,5 @@ class ReceiptService
     public function delete(Receipt $receipt): void
     {
         $this->entityManager->remove($receipt);
-        $this->entityManager->flush();
     }
 }

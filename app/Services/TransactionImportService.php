@@ -7,14 +7,14 @@ namespace App\Services;
 
 use App\DataObjects\TransactionData;
 use App\Entity\User;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class TransactionImportService
 {
     public function __construct(
         private readonly CategoryService $categoryService,
         private readonly TransactionService $transactionService,
-        private readonly EntityManager $entityManager
+        private readonly EntityManagerInterface $entityManager
     )
     {
     }
