@@ -60,7 +60,7 @@ return [
     Config::class                           => create(Config::class)->constructor(
         require CONFIG_PATH . '/app.php'
     ),
-    EntityManagerService::class                    => function (Config $config) {
+    EntityManagerInterface::class                    => function (Config $config) {
         $ormConfig = ORMSetup::createAttributeMetadataConfiguration(
             $config->get('doctrine.entity_dir'),
             $config->get('doctrine.dev_mode')
