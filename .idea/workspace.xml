@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="Minor refactoring">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/TransactionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/EntityManagerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/EntityManagerService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/TransactionImportService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TransactionImportService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/TransactionService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TransactionService.php" afterDir="false" />
-    </list>
+    <list default="true" id="e3c5dc93-c79a-455b-8489-0ed525b2f703" name="Changes" comment="Was reviewed column" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,7 +214,7 @@
       <workItem from="1734048018184" duration="409000" />
       <workItem from="1734105226483" duration="7577000" />
       <workItem from="1734183700027" duration="2120000" />
-      <workItem from="1734258882361" duration="3113000" />
+      <workItem from="1734258882361" duration="3420000" />
     </task>
     <task id="LOCAL-00004" summary="Secure sorting and filtering">
       <option name="closed" value="true" />
@@ -487,7 +480,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734261711124</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Was reviewed column">
+      <option name="closed" value="true" />
+      <created>1734273222748</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1734273222748</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,6 +509,7 @@
     <MESSAGE value="Clockwork" />
     <MESSAGE value="Clockwork part 2" />
     <MESSAGE value="Minor refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor refactoring" />
+    <MESSAGE value="Was reviewed column" />
+    <option name="LAST_COMMIT_MESSAGE" value="Was reviewed column" />
   </component>
 </project>
