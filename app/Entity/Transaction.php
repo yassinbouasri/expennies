@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Entity;
 
 use App\Entity\Traits\HasTimestamps;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -26,27 +27,36 @@ class Transaction
     #[Id, Column(options: ['unsigned' => true]), GeneratedValue]
     private int $id;
 
+    #[Column(name: 'was_reviewed', options: ['default' => 0])]
+    private bool $wasReviewed;
     #[Column]
     private string $description;
-
     #[Column]
-    private \DateTime $date;
-
+    private DateTime $date;
     #[Column(type: Types::DECIMAL, precision: 13, scale: 3)]
     private float $amount;
-
     #[ManyToOne(inversedBy: 'transactions')]
     private User $user;
-
     #[ManyToOne(inversedBy: 'transactions')]
     private ?Category $category;
-
     #[OneToMany(mappedBy: 'transaction', targetEntity: Receipt::class)]
     private Collection $receipts;
 
     public function __construct()
     {
         $this->receipts = new ArrayCollection();
+    }
+
+    public function WasReviewed(): bool
+    {
+        return $this->wasReviewed;
+    }
+
+    public function setReviewed(bool $wasReviewed): Transaction
+    {
+        $this->wasReviewed = $wasReviewed;
+
+        return $this;
     }
 
     public function getId(): int
@@ -66,12 +76,12 @@ class Transaction
         return $this;
     }
 
-    public function getDate(): \DateTime
+    public function getDate(): DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTime $date): Transaction
+    public function setDate(DateTime $date): Transaction
     {
         $this->date = $date;
 

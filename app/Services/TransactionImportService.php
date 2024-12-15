@@ -12,9 +12,10 @@ use Doctrine\ORM\EntityManagerInterface;
 class TransactionImportService
 {
     public function __construct(
-        private readonly CategoryService $categoryService,
-        private readonly TransactionService $transactionService,
-        private readonly EntityManagerInterface $entityManager
+        private readonly CategoryService      $categoryService,
+        private readonly TransactionService   $transactionService,
+        private readonly EntityManagerService $entityManagerService,
+
     )
     {
     }
@@ -40,16 +41,16 @@ class TransactionImportService
             $this->transactionService->create($transactionData, $user);
 
             if ($count % $batchSize === 0) {
-                $this->entityManager->flush();
-                $this->entityManager->clear(TransactionData::class);
+                $this->entityManagerService->flush();
+                $this->entityManagerService->clear(TransactionData::class);
                 $count = 1;
             }else {
                 $count++;
             }
         }
         if ($count > 1) {
-            $this->entityManager->flush();
-            $this->entityManager->clear();
+            $this->entityManagerService->flush();
+            $this->entityManagerService->clear();
         }
     }
 
