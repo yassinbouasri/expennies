@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Services;
 
 use App\Contracts\EntityManagerServiceInterface;
+use BadMethodCallException;
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -20,21 +21,23 @@ class EntityManagerService implements EntityManagerServiceInterface
             return call_user_func_array([$this->entityManager, $name], $arguments);
         }
 
-        throw new \BadMethodCallException('Call to undefined method ' . get_class($this) . '::' . $name . '()');
+        throw new BadMethodCallException('Call to undefined method ' . get_class($this) . '::' . $name . '()');
     }
-    public function sync($entity = null ): void
-    {
-        if ($entity) {
-            $this->entityManager->persist($entity);
-        }
-        $this->entityManager->flush();
-    }
+
     public function delete($entity, bool $sync = false): void
     {
         $this->entityManager->remove($entity);
         if ($sync) {
             $this->sync();
         }
+    }
+
+    public function sync($entity = null): void
+    {
+        if ($entity) {
+            $this->entityManager->persist($entity);
+        }
+        $this->entityManager->flush();
     }
 
     public function clear(?string $entityName = null): void
@@ -51,5 +54,10 @@ class EntityManagerService implements EntityManagerServiceInterface
         foreach ($entities as $entity) {
             $this->entityManager->detach($entity);
         }
+    }
+
+    public function enableUserAuthFilter(int $getId): void
+    {
+        $this->getFilters()->enable('user')->setParameter('user_id', $getId);
     }
 }

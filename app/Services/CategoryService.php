@@ -25,7 +25,7 @@ class CategoryService
         return $this->update($category, $name);
     }
 
-    public function getPaginatedCategories(DataTableQueryParams $params): Paginator
+    public function getPaginatedCategories(DataTableQueryParams $params, int $userId): Paginator
     {
         $query = $this->entityManager
             ->getRepository(Category::class)
