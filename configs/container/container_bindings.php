@@ -37,6 +37,8 @@ use Symfony\Bridge\Twig\Extension\AssetExtension;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\WebpackEncoreBundle\Asset\EntrypointLookup;
 use Symfony\WebpackEncoreBundle\Asset\TagRenderer;
 use Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension;
@@ -145,4 +147,9 @@ return [
     EntityManagerServiceInterface::class    => fn(EntityManagerInterface $entityManager) => new EntityManagerService(
         $entityManager
     ),
+    MailerInterface::class => function(Config $config){
+        $transport = \Symfony\Component\Mailer\Transport::fromDsn($config->get('mailer.dsn'));
+
+        return new Mailer($transport);
+    }
 ];

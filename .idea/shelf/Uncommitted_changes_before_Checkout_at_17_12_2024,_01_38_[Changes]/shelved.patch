@@ -1,0 +1,53 @@
+Index: docker/Dockerfile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>FROM php:8.2-fpm\r\n\r\nARG USER\r\nARG USER_ID\r\nARG GROUP_ID\r\n\r\nWORKDIR /var/www\r\n\r\nRUN apt-get update && apt-get install -y \\\r\n    git \\\r\n    zip \\\r\n    unzip \\\r\n    curl \\\r\n    vim \\\r\n    libicu-dev\r\n\r\nRUN curl -sL https://deb.nodesource.com/setup_16.x | bash \\\r\n    && apt-get install nodejs -y\r\n\r\nRUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer\r\n\r\nRUN docker-php-ext-configure intl\r\nRUN docker-php-ext-install pdo pdo_mysql intl\r\n\r\nRUN pecl install xdebug \\\r\n    && docker-php-ext-enable xdebug\r\n\r\nCOPY xdebug.ini \"${PHP_INI_DIR}/conf.d\"\r\n\r\nRUN groupadd --force -g $GROUP_ID $USER\r\nRUN useradd -ms /bin/bash --no-user-group -g $GROUP_ID -u 1337 $USER\r\nRUN usermod -u $USER_ID $USER\r\n\r\nUSER $USER\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/docker/Dockerfile b/docker/Dockerfile
+--- a/docker/Dockerfile	(revision baa523ecd7cd058b1e75956ad828024cdcd2ed5f)
++++ b/docker/Dockerfile	(date 1734395685376)
+@@ -6,27 +6,41 @@
+ 
+ WORKDIR /var/www
+ 
++# Install dependencies
+ RUN apt-get update && apt-get install -y \
+     git \
+     zip \
+     unzip \
+     curl \
+     vim \
+-    libicu-dev
++    libicu-dev \
++    libcurl4-openssl-dev \
++    libssl-dev \
++    pkg-config \
++    libevent-dev
+ 
++# Install Node.js
+ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
+     && apt-get install nodejs -y
+ 
++# Install Composer
+ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ 
++# Install intl extension
+ RUN docker-php-ext-configure intl
+ RUN docker-php-ext-install pdo pdo_mysql intl
+ 
++# Install xdebug
+ RUN pecl install xdebug \
+     && docker-php-ext-enable xdebug
+ 
+ COPY xdebug.ini "${PHP_INI_DIR}/conf.d"
+ 
++# Install ext-http
++RUN pecl install pecl_http \
++    && docker-php-ext-enable http
++
++# User configuration
+ RUN groupadd --force -g $GROUP_ID $USER
+ RUN useradd -ms /bin/bash --no-user-group -g $GROUP_ID -u 1337 $USER
+ RUN usermod -u $USER_ID $USER
