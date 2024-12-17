@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
+use DateTime;
 
 #[Entity, Table('users')]
 #[HasLifecycleCallbacks]
@@ -34,22 +35,22 @@ class User implements UserInterface
 
     #[Column]
     private string $password;
-
+    #[Column(name: 'verified_at', nullable: true)]
+    private ?DateTime $verifiedAt;
     #[OneToMany(mappedBy: 'user', targetEntity: Category::class)]
     private Collection $categories;
-
     #[OneToMany(mappedBy: 'user', targetEntity: Transaction::class)]
     private Collection $transactions;
 
     public function __construct()
     {
-        $this->categories   = new ArrayCollection();
+        $this->categories = new ArrayCollection();
         $this->transactions = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getVerifiedAt(): ?DateTime
     {
-        return $this->id;
+        return $this->verifiedAt;
     }
 
     public function getName(): string
@@ -115,5 +116,10 @@ class User implements UserInterface
     public function canManage(OwnableInterface $entity): bool
     {
         return $this->getId() === $entity->getUser()->getId();
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }
