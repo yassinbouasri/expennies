@@ -49,7 +49,7 @@ class SignupEmail
         $baseUrl = trim($this->config->get('app.url'), '/');
         $url = $baseUrl . $this->routeParser->urlFor('verify', $routeParams, $queryParams);
 
-        $singatue = hash_hmac('sha256', $url, $secretKey);
+        $singatue = hash_hmac('sha256', $url);
 
     }
 }
