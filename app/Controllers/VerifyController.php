@@ -25,7 +25,7 @@ class VerifyController
         /** @var User $user $user */
         $user = $request->getAttribute('user');
 
-        if(! hash_equals((string) $user->getId(), $args['id'] ) || ! hash_equals(sha1($user->getEmail()), $args['email'])) {
+        if(! hash_equals((string) $user->getId(), $args['id'] ) || ! hash_equals(sha1($user->getEmail()), $args['hash'])) {
             throw new \RuntimeException('Verification failed');
         }
 
@@ -34,6 +34,6 @@ class VerifyController
         }
 
 
-        return $response->withStatus(302)->withHeader('Location', '/');
+        return $response->withHeader('Location', '/')->withStatus(302);
     }
 }
