@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Implimenting Two-Factor Auth">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/UserLoginCodeService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserLoginCodeService.php" afterDir="false" />
-    </list>
+    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Deactivate code after successful login" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,25 +136,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "P32__Yassin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "php.override.implement.member.chooser.php.doc": "NONE",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;P32__Yassin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
@@ -184,7 +180,7 @@
       <workItem from="1734481548908" duration="2337000" />
       <workItem from="1734523028837" duration="5485000" />
       <workItem from="1734570205859" duration="2698000" />
-      <workItem from="1734653435533" duration="3260000" />
+      <workItem from="1734653435533" duration="3645000" />
     </task>
     <task id="LOCAL-00001" summary="Secure user verification Using signed urls">
       <option name="closed" value="true" />
@@ -242,7 +238,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734656179671</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Deactivate code after successful login">
+      <option name="closed" value="true" />
+      <created>1734657280624</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734657280624</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Deactivate code after successful login">
+      <option name="closed" value="true" />
+      <created>1734657297796</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734657297796</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +265,7 @@
     <MESSAGE value="Resend verification implementation" />
     <MESSAGE value="Sending 2af code in email" />
     <MESSAGE value="Implimenting Two-Factor Auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implimenting Two-Factor Auth" />
+    <MESSAGE value="Deactivate code after successful login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deactivate code after successful login" />
   </component>
 </project>
