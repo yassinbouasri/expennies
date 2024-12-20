@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Sending 2af code in email">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Implimenting Two-Factor Auth">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/AuthInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/AuthInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/UserLoginCodeService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserLoginCodeService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,6 +152,11 @@
     "php.override.implement.member.chooser.php.doc": "NONE",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -182,7 +184,7 @@
       <workItem from="1734481548908" duration="2337000" />
       <workItem from="1734523028837" duration="5485000" />
       <workItem from="1734570205859" duration="2698000" />
-      <workItem from="1734653435533" duration="2510000" />
+      <workItem from="1734653435533" duration="3260000" />
     </task>
     <task id="LOCAL-00001" summary="Secure user verification Using signed urls">
       <option name="closed" value="true" />
@@ -232,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734573381094</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Implimenting Two-Factor Auth">
+      <option name="closed" value="true" />
+      <created>1734656179671</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734656179671</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +252,7 @@
     <MESSAGE value="Secure user verification Using signed urls" />
     <MESSAGE value="Resend verification implementation" />
     <MESSAGE value="Sending 2af code in email" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sending 2af code in email" />
+    <MESSAGE value="Implimenting Two-Factor Auth" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implimenting Two-Factor Auth" />
   </component>
 </project>
