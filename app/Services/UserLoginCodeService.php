@@ -31,4 +31,21 @@ class UserLoginCodeService
         return $userLoginCode;
     }
 
+    public function verify(User $user, mixed $code): bool
+    {
+        $userLoginCode = $this->entityManagerService->getRepository(UserLoginCode::class)->findOneBy(
+            ['user' => $user, 'code' => $code, 'isActive' => true]
+        );
+
+        if (! $userLoginCode) {
+            return false;
+        }
+
+        if($userLoginCode->getExpiration() <= new DateTime()){
+            return false;
+        }
+
+        return true;
+    }
+
 }

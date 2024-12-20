@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Resend verification implementation" />
+    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Sending 2af code in email">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Contracts/AuthInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/AuthInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UserLoginCodeService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserLoginCodeService.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="P31_Yassin" />
+        <entry key="$PROJECT_DIR$" value="P31_StartY" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -139,12 +146,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "P31__StartY",
+    "git-widget-placeholder": "P32__Yassin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -172,6 +181,8 @@
       <updated>1734481547774</updated>
       <workItem from="1734481548908" duration="2337000" />
       <workItem from="1734523028837" duration="5485000" />
+      <workItem from="1734570205859" duration="2698000" />
+      <workItem from="1734653435533" duration="2510000" />
     </task>
     <task id="LOCAL-00001" summary="Secure user verification Using signed urls">
       <option name="closed" value="true" />
@@ -213,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734568775983</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Sending 2af code in email">
+      <option name="closed" value="true" />
+      <created>1734573381094</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1734573381094</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,6 +241,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Secure user verification Using signed urls" />
     <MESSAGE value="Resend verification implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resend verification implementation" />
+    <MESSAGE value="Sending 2af code in email" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sending 2af code in email" />
   </component>
 </project>
