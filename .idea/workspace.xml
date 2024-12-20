@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Deactivate code after successful login" />
+    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Deactivate code after successful login">
+      <change afterPath="$PROJECT_DIR$/app/Controllers/PasswordResetController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Controllers/ProfileController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DataObjects/UserProfileData.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/RequestValidators/ForgotPasswordRequestValidator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/RequestValidators/UserProfileService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/forgot_password.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/forgot_password.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/auth/reset_password.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/password_reset.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/password_reset_html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/profile/index.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/profile/update_password_modal.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/03901dbf-f88a-4565-bf3d-19bcaefdc71f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/03901dbf-f88a-4565-bf3d-19bcaefdc71f.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/layout.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/layout.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="P31_StartY" />
+        <entry key="$PROJECT_DIR$" value="P32_Yassin" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -136,25 +158,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;P32__Yassin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "P33__Yassin",
+    "last_opened_file_path": "/Users/yassin/My Files/coding/expennies",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
@@ -181,6 +204,7 @@
       <workItem from="1734523028837" duration="5485000" />
       <workItem from="1734570205859" duration="2698000" />
       <workItem from="1734653435533" duration="3645000" />
+      <workItem from="1734731289218" duration="4089000" />
     </task>
     <task id="LOCAL-00001" summary="Secure user verification Using signed urls">
       <option name="closed" value="true" />
@@ -254,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734657297796</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Deactivate code after successful login">
+      <option name="closed" value="true" />
+      <created>1734731370508</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734731370508</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
