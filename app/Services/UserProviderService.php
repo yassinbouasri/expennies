@@ -45,4 +45,11 @@ class UserProviderService implements UserProviderServiceInterface
 
         $this->entityManager->sync($user);
     }
+
+
+    public function updatePassword(UserInterface $user, string $password): void
+    {
+        $user->setPassword($this->hashService->hashPassword($password));
+        $this->entityManager->sync($user);
+    }
 }
