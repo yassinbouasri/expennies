@@ -15,7 +15,6 @@
     },
     "require": {
         "ext-pdo": "*",
-        "ext-redis": "*",
         "doctrine/dbal": "^3.4",
         "doctrine/migrations": "^3.5",
         "doctrine/orm": "^2.13",
@@ -37,7 +36,8 @@
         "twig/intl-extra": "^3.4",
         "twig/twig": "^3.4",
         "vlucas/phpdotenv": "^5.4",
-        "vlucas/valitron": "^1.4"
+        "vlucas/valitron": "^1.4",
+      "ext-redis": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
