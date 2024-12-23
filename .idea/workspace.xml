@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Implement Update Password from profile">
-      <change afterPath="$PROJECT_DIR$/app/Middleware/RateLimitMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/container/container_bindings.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/container/container_bindings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
-    </list>
+    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Implementing Rate Limiting" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,7 +192,7 @@
       <workItem from="1734653435533" duration="3645000" />
       <workItem from="1734731289218" duration="4126000" />
       <workItem from="1734735787934" duration="9719000" />
-      <workItem from="1734781352439" duration="13703000" />
+      <workItem from="1734781352439" duration="13849000" />
     </task>
     <task id="LOCAL-00001" summary="Secure user verification Using signed urls">
       <option name="closed" value="true" />
@@ -331,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734802008549</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Implementing Rate Limiting">
+      <option name="closed" value="true" />
+      <created>1734828670693</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1734828670693</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,6 +344,7 @@
     <MESSAGE value="Deactivate code after successful login" />
     <MESSAGE value="Implement Forgot Password Functionality" />
     <MESSAGE value="Implement Update Password from profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement Update Password from profile" />
+    <MESSAGE value="Implementing Rate Limiting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing Rate Limiting" />
   </component>
 </project>
