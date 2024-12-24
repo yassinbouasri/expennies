@@ -8,7 +8,12 @@ use App\ResponseFormatter;
 use App\Services\CategoryService;
 use App\Services\TransactionService;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\SimpleCache\InvalidArgumentException;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class HomeController
 {
@@ -20,13 +25,20 @@ class HomeController
     ) {
     }
 
-    public function index(Response $response): Response
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws InvalidArgumentException
+     * @throws LoaderError
+     */
+    public function index(Response $response, Request $request): Response
     {
-        $startDate             = \DateTime::createFromFormat('Y-m-d', date('Y-m-01'));
+        $startDate             = \DateTime::createFromFormat('Y-m-d', date('2023-01-01'));
         $endDate               = new \DateTime('now');
-        $totals                = $this->transactionService->getTotals($startDate, $endDate);
-        $recentTransactions    = $this->transactionService->getRecentTransactions(10);
-        $topSpendingCategories = $this->categoryService->getTopSpendingCategories(4);
+        $userId                = $request->getAttribute('user')->getId();
+        $totals                = $this->transactionService->getTotals($startDate, $endDate, $userId);
+        $recentTransactions    = $this->transactionService->getRecentTransactions(10, $userId);
+        $topSpendingCategories = $this->categoryService->getTopSpendingCategories(4, $userId);
 
         return $this->twig->render(
             $response,
@@ -39,9 +51,10 @@ class HomeController
         );
     }
 
-    public function getYearToDateStatistics(Response $response): Response
+    public function getYearToDateStatistics(Response $response, Request $request): Response
     {
-        $data = $this->transactionService->getMonthlySummary((int) date('Y'));
+
+        $data = $this->transactionService->getMonthlySummary((int) date('2023-01-01'), $request->getAttribute('user')->getId());
 
         return $this->responseFormatter->asJson($response, $data);
     }

@@ -10,10 +10,12 @@ use App\DataObjects\TransactionData;
 use App\Entity\Transaction;
 use App\Entity\User;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Psr\SimpleCache\CacheInterface;
+use Psr\SimpleCache\InvalidArgumentException;
 
 class TransactionService
 {
-    public function __construct(private readonly EntityManagerServiceInterface $entityManager)
+    public function __construct(private readonly EntityManagerServiceInterface $entityManager, private readonly CacheInterface $cache)
     {
     }
 
@@ -23,7 +25,7 @@ class TransactionService
 
         $transaction->setUser($user);
 
-        return $this->update($transaction, $transactionData);
+        return $this->update($transaction, $transactionData,  $user->getId());
     }
 
     public function getPaginatedTransactions(DataTableQueryParams $params): Paginator
@@ -53,6 +55,7 @@ class TransactionService
             $query->orderBy('t.' . $orderBy, $orderDir);
         }
 
+
         return new Paginator($query);
     }
 
@@ -61,12 +64,13 @@ class TransactionService
         return $this->entityManager->find(Transaction::class, $id);
     }
 
-    public function update(Transaction $transaction, TransactionData $transactionData): Transaction
+    public function update(Transaction $transaction, TransactionData $transactionData, int $userId): Transaction
     {
         $transaction->setDescription($transactionData->description);
         $transaction->setAmount($transactionData->amount);
         $transaction->setDate($transactionData->date);
         $transaction->setCategory($transactionData->category);
+        $this->cache->clear();
 
         return $transaction;
     }
@@ -76,9 +80,15 @@ class TransactionService
         $transaction->setReviewed(! $transaction->wasReviewed());
     }
 
-    public function getTotals(\DateTime $startDate, \DateTime $endDate): array
+    public function getTotals(\DateTime $startDate, \DateTime $endDate, int $userId): array
     {
-        return  $this->entityManager->getRepository(Transaction::class)
+        $cachedKey = "totals_{$userId}";
+
+        if ($this->cache->has($cachedKey)) {
+            return $this->cache->get($cachedKey);
+        }
+
+        $result =   $this->entityManager->getRepository(Transaction::class)
             ->createQueryBuilder('t')
             ->select(
                 'sum(t.amount) as net, 
@@ -90,11 +100,23 @@ class TransactionService
             ->setParameter('endDate', $endDate)
             ->getQuery()
             ->getSingleResult();
+
+        $this->cache->set($cachedKey, $result, 3600);
+
+        return $result;
     }
 
-    public function getRecentTransactions(int $limit): array
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function getRecentTransactions(int $limit, int $userId): array
     {
-        $top = $this->entityManager->getRepository(Transaction::class)
+        $cachedKey = "recent_transactions_{$userId}";
+
+        if ($this->cache->has($cachedKey)) {
+            return $this->cache->get($cachedKey);
+        }
+        $result = $this->entityManager->getRepository(Transaction::class)
             ->createQueryBuilder('t')
             ->select('t', 'c')
             ->leftjoin('t.category', 'c')
@@ -103,12 +125,24 @@ class TransactionService
             ->getQuery()
             ->getArrayResult();
 
-        return $top;
+        $this->cache->set($cachedKey, $result, 3600);
+
+        return $result;
     }
 
-    public function getMonthlySummary(int $year): array
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function getMonthlySummary(int $year, int $userId): array
     {
-        return $this->entityManager->getRepository(Transaction::class)
+        $cachedKey = "monthly_summary_{$userId}";
+
+
+        if ($this->cache->has($cachedKey)) {
+            return $this->cache->get($cachedKey);
+        }
+
+        $result =  $this->entityManager->getRepository(Transaction::class)
             ->createQueryBuilder('t')
             ->select('
                         sum (CASE WHEN t.amount > 0 THEN t.amount ELSE 0 END) as income,
@@ -121,5 +155,10 @@ class TransactionService
             ->setParameter('year', $year)
             ->getQuery()
             ->getArrayResult();
+
+        $this->cache->set($cachedKey, $result, 3600);
+
+
+        return $result;
     }
 }
