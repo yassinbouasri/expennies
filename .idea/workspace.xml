@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Implement getCustomStatistics">
+    <list default="true" id="05c567d8-8a44-42a3-afed-3a88dc94126c" name="Changes" comment="Custom date chart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Services/TransactionService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/TransactionService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboard.twig" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +210,7 @@
       <workItem from="1734965723805" duration="9401000" />
       <workItem from="1735037786457" duration="4440000" />
       <workItem from="1735067178107" duration="17267000" />
-      <workItem from="1735126416284" duration="17605000" />
+      <workItem from="1735126416284" duration="18256000" />
     </task>
     <task id="LOCAL-00001" summary="Secure user verification Using signed urls">
       <option name="closed" value="true" />
@@ -423,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735089514696</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Custom date chart">
+      <option name="closed" value="true" />
+      <created>1735158392024</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1735158392024</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,6 +449,7 @@
     <MESSAGE value="Implementing Monthly Summary" />
     <MESSAGE value="Implement caching for dashboard for better performance" />
     <MESSAGE value="Implement getCustomStatistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement getCustomStatistics" />
+    <MESSAGE value="Custom date chart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Custom date chart" />
   </component>
 </project>

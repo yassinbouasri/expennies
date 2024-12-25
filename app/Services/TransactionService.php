@@ -83,6 +83,7 @@ class TransactionService
     {
         $cachedKey = "totals_{$userId}";
 
+        $this->cache->clear();
         if ($this->cache->has($cachedKey)) {
             return $this->cache->get($cachedKey);
         }
@@ -100,7 +101,7 @@ class TransactionService
             ->getQuery()
             ->getSingleResult();
 
-        $this->cache->set($cachedKey, $result, 3600);
+        $this->cache->set($cachedKey, $result, 60);
 
         return $result;
     }
@@ -124,7 +125,7 @@ class TransactionService
             ->getQuery()
             ->getArrayResult();
 
-        $this->cache->set($cachedKey, $result, 3600);
+        $this->cache->set($cachedKey, $result, 60);
 
         return $result;
     }
@@ -154,7 +155,7 @@ class TransactionService
             ->getQuery()
             ->getArrayResult();
 
-        $this->cache->set($cachedKey, $result, 3600);
+        $this->cache->set($cachedKey, $result, 60);
 
         return $result;
     }
