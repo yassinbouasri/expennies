@@ -55,7 +55,6 @@ class TransactionService
             $query->orderBy('t.' . $orderBy, $orderDir);
         }
 
-
         return new Paginator($query);
     }
 
