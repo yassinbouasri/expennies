@@ -16,22 +16,28 @@
     <div class="dashboard">
         <div class="top-container mb-4 row g-0 rounded-4">
             <div class="col-8 border-end border-3">
-                <form action="/ytd" method="post">
+                <form action="/" method="post">
                     {{ csrf.fields | raw }}
                     <div class="row text-center align-items-center">
                         <div class="d-flex justify-content-between align-items-center w-100">
                             <div class="p-2 flex-grow-1">
                                 <input type="date" name="start-date" id="start-date"
                                        class="form-control form-control-lg text-center"
-                                       placeholder="Select Start Date" />
+                                       placeholder="Select Start Date"
+                                       value="{{ startDate }}"
+                                />
                             </div>
                             <div class="p-2 flex-grow-1">
                                 <input type="date" name="end-date" id="end-date"
                                        class="form-control form-control-lg text-center"
-                                       placeholder="Select End Date" />
+                                       placeholder="Select End Date"
+                                       value="{{ endDate }}"
+                                />
                             </div>
                             <div class="p-2">
-                                <button type="submit" class="btn btn-primary save-category-btn">
+                                <input type="hidden" name="year" value="{{ year }}">
+
+                                <button type="submit" class="btn btn-primary filter-btn">
                                     <i class="bi bi-check-circle me-1"></i>
                                     Filter
                                 </button>

@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded', function () {
     const startDateInput = document.querySelector('#start-date');
     const endDateInput = document.querySelector('#end-date');
 
+
+
     // Function to get the date range
     function getDateRange() {
         const startDate = startDateInput.value;  // Get the start date value
@@ -18,7 +20,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     // Add event listener to the button to fetch data when clicked
-    document.querySelector('.save-category-btn').addEventListener('click', function () {
+    document.querySelector('.filter-btn').addEventListener('click', function () {
         // Get the date range
         const { start_date, end_date } = getDateRange();
 
@@ -32,6 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
         get(`/stats/ytd?start_date=${start_date}&end_date=${end_date}`)
             .then(response => response.json())
             .then(response => {
+                console.log(response);
                 let expensesData = Array(12).fill(null);
                 let incomeData = Array(12).fill(null);
 
@@ -41,7 +44,6 @@ window.addEventListener('DOMContentLoaded', function () {
                     incomeData[m - 1] = income;
                 });
 
-                // Render the chart
                 new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -77,3 +79,5 @@ window.addEventListener('DOMContentLoaded', function () {
             });
     });
 });
+
+

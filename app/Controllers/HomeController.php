@@ -1,10 +1,9 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Contracts\RequestValidatorFactoryInterface;
 use App\ResponseFormatter;
 use App\Services\CategoryService;
 use App\Services\TransactionService;
@@ -15,16 +14,19 @@ use Slim\Views\Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use DateTime;
 
 class HomeController
 {
+    public int $year = 2024;
+
     public function __construct(
         private readonly Twig $twig,
         private readonly TransactionService $transactionService,
         private readonly CategoryService $categoryService,
         private readonly ResponseFormatter $responseFormatter,
-        private readonly RequestValidatorFactoryInterface $requestValidatorFactory
-    ) {
+    )
+    {
     }
 
     /**
@@ -35,51 +37,39 @@ class HomeController
      */
     public function index(Response $response, Request $request): Response
     {
-        $startDate             = \DateTime::createFromFormat('Y-m-d', date('2023-01-01'));
-        $endDate               = new \DateTime('now');
-        $userId                = $request->getAttribute('user')->getId();
-        $totals                = $this->transactionService->getTotals($startDate, $endDate, $userId);
-        $recentTransactions    = $this->transactionService->getRecentTransactions(10, $userId);
+        $defaultStartDate = DateTime::createFromFormat('Y-m-d', date('2024-12-01'));
+        $defaultEndDate = new DateTime('now');
+
+        $startDate = DateTime::createFromFormat('Y-m-d', $request->getParsedBody()['start-date'] ?? $defaultStartDate->format('Y-m-d'));
+        $endDate = DateTime::createFromFormat('Y-m-d', $request->getParsedBody()['end-date'] ?? $defaultEndDate->format('Y-m-d'));
+
+        $year = date("Y", strtotime($startDate->format('Y-m-d')));
+        $this->getYear((int)$year);
+        setcookie('year', $year, time() + 3600, '/');
+
+        $userId = $request->getAttribute('user')->getId();
+        $totals = $this->transactionService->getTotals($startDate, $endDate, $userId);
+
+        $recentTransactions = $this->transactionService->getRecentTransactions(10, $userId);
         $topSpendingCategories = $this->categoryService->getTopSpendingCategories(4, $userId);
 
-        return $this->twig->render(
-            $response,
-            'dashboard.twig',
-            [
-                'totals'                => $totals,
-                'transactions'          => $recentTransactions,
-                'topSpendingCategories' => $topSpendingCategories,
-            ]
-        );
+        return $this->twig->render($response, 'dashboard.twig', ['totals' => $totals, 'transactions' => $recentTransactions, 'topSpendingCategories' => $topSpendingCategories, 'startDate' => $startDate->format('Y-m-d'), 'endDate' => $endDate->format('Y-m-d'), 'year' => $year,]);
     }
 
     public function getYearToDateStatistics(Response $response, Request $request): Response
     {
+        $year = isset($_COOKIE['year']) ? (int)$_COOKIE['year'] : (int)date('Y');
 
-        $data = $this->transactionService->getMonthlySummary((int) date('2023-01-01'), $request->getAttribute('user')->getId());
+        $data = $this->transactionService->getMonthlySummary($year, $request->getAttribute('user')->getId());
 
         return $this->responseFormatter->asJson($response, $data);
     }
 
-    public function getCustomStatistics(Response $response, Request $request): Response
+    public function getYear(int $year): int
     {
-        //TODO
-        $startDate             = \DateTime::createFromFormat('Y-m-d' ,$request->getParsedBody()['start-date']);
-        $endDate               = \DateTime::createFromFormat('Y-m-d' ,$request->getParsedBody()['end-date']);
-        $userId                = $request->getAttribute('user')->getId();
+        $this->year = $year;
 
-
-            $totals                = $this->transactionService->getTotals($startDate, $endDate, $userId);
-
-        var_dump($totals);
-
-        return $this->twig->render(
-            $response,
-            'dashboard.twig',
-            [
-                'totals' => $totals
-            ]
-        );
+        return $year;
     }
 
 }

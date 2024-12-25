@@ -23,7 +23,8 @@ return function (App $app) {
     $app->group('', function (RouteCollectorProxy $group) {
         $group->get('/', [HomeController::class, 'index'])->setName('home');
         $group->get('/stats/ytd', [HomeController::class, 'getYearToDateStatistics']);
-        $group->post('/ytd', [HomeController::class, 'getCustomStatistics']);
+        $group->post('/', [HomeController::class, 'index']);
+        $group->post('/year', [HomeController::class, 'getYear']);
 
         $group->group('/categories', function (RouteCollectorProxy $categories) {
             $categories->get('', [CategoryController::class, 'index'])->setName('categories');

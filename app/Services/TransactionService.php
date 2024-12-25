@@ -136,9 +136,8 @@ class TransactionService
     {
         $cachedKey = "monthly_summary_{$userId}";
 
-
-        if ($this->cache->has($cachedKey)) {
-            return $this->cache->get($cachedKey);
+       if ($this->cache->has($cachedKey)) {
+           return $this->cache->get($cachedKey);
         }
 
         $result =  $this->entityManager->getRepository(Transaction::class)
@@ -156,7 +155,6 @@ class TransactionService
             ->getArrayResult();
 
         $this->cache->set($cachedKey, $result, 3600);
-
 
         return $result;
     }
