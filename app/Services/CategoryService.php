@@ -7,12 +7,14 @@ namespace App\Services;
 use App\Contracts\EntityManagerServiceInterface;
 use App\DataObjects\DataTableQueryParams;
 use App\Entity\Category;
+use App\Entity\Transaction;
 use App\Entity\User;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Psr\SimpleCache\CacheInterface;
 
 class CategoryService
 {
-    public function __construct(private readonly EntityManagerServiceInterface $entityManager)
+    public function __construct(private readonly EntityManagerServiceInterface $entityManager, private readonly CacheInterface $cache)
     {
     }
 
@@ -84,5 +86,28 @@ class CategoryService
         }
 
         return $categoryMap;
+    }
+
+    public function getTopSpendingCategories(int $limit, int $userId): array
+    {
+        $cachedKey = "top_spending_categories_{$userId}";
+        if ($this->cache->has($cachedKey)) {
+            return $this->cache->get($cachedKey);
+        }
+        $result =  $this->entityManager->getRepository(Transaction::class)
+            ->createQueryBuilder('t')
+            ->select('c.name', 'sum(ABS(t.amount)) as total')
+            ->join('t.category', 'c')
+            ->where('t.amount < 0')
+            ->groupBy('c.id')
+            ->orderBy('total', 'desc')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getArrayResult();
+
+        $this->cache->set($cachedKey, $result, 3600);
+
+        return $result;
+
     }
 }
