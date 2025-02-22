@@ -17,6 +17,7 @@ use App\Services\TransactionService;
 use DateTime;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\SimpleCache\CacheInterface;
 use Slim\Views\Twig;
 
 class TransactionController
@@ -28,7 +29,8 @@ class TransactionController
         private readonly ResponseFormatter $responseFormatter,
         private readonly RequestService $requestService,
         private readonly CategoryService $categoryService,
-        private readonly EntityManagerServiceInterface $entityManagerService
+        private readonly EntityManagerServiceInterface $entityManagerService,
+        private readonly CacheInterface $cache,
     ) {
     }
 
@@ -65,6 +67,7 @@ class TransactionController
     public function delete(Response $response, Transaction $transaction): Response
     {
         $this->entityManagerService->delete($transaction, true);
+        $this->cache->clear();
 
         return $response;
     }
@@ -96,7 +99,8 @@ class TransactionController
                     (float) $data['amount'],
                     new DateTime($data['date']),
                     $data['category']
-                )
+                ),
+                $request->getAttribute('user')->getId()
             )
         );
 

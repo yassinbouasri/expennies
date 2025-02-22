@@ -7,12 +7,14 @@ namespace App\Services;
 use App\Contracts\EntityManagerServiceInterface;
 use App\DataObjects\DataTableQueryParams;
 use App\Entity\Category;
+use App\Entity\Transaction;
 use App\Entity\User;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Psr\SimpleCache\CacheInterface;
 
 class CategoryService
 {
-    public function __construct(private readonly EntityManagerServiceInterface $entityManager)
+    public function __construct(private readonly EntityManagerServiceInterface $entityManager, private readonly CacheInterface $cache)
     {
     }
 
@@ -86,19 +88,26 @@ class CategoryService
         return $categoryMap;
     }
 
-    public function getTopSpendingCategories(int $limit): array
+    public function getTopSpendingCategories(int $limit, int $userId): array
     {
-        $query = $this->entityManager->createQuery(
-            'SELECT c.name, SUM(ABS(t.amount)) as total
-             FROM App\Entity\Transaction t
-             JOIN t.category c
-             WHERE t.amount < 0
-             GROUP BY c.id
-             ORDER BY total DESC'
-        );
+        $cachedKey = "top_spending_categories_{$userId}";
+        if ($this->cache->has($cachedKey)) {
+            return $this->cache->get($cachedKey);
+        }
+        $result =  $this->entityManager->getRepository(Transaction::class)
+            ->createQueryBuilder('t')
+            ->select('c.name', 'sum(ABS(t.amount)) as total')
+            ->join('t.category', 'c')
+            ->where('t.amount < 0')
+            ->groupBy('c.id')
+            ->orderBy('total', 'desc')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getArrayResult();
 
-        $query->setMaxResults($limit);
+        $this->cache->set($cachedKey, $result, 3600);
 
-        return $query->getArrayResult();
+        return $result;
+
     }
 }
