@@ -6,7 +6,6 @@ namespace App\Mail;
 
 use App\Config;
 use App\Entity\PasswordReset;
-use App\Entity\UserLoginCode;
 use App\SignedUrl;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
@@ -18,14 +17,13 @@ class ForgotPasswordEmail
         private readonly Config $config,
         private readonly MailerInterface $mailer,
         private readonly BodyRendererInterface $renderer,
-        private readonly SignedUrl $signedUrl,
+        private readonly SignedUrl $signedUrl
     ) {
     }
 
     public function send(PasswordReset $passwordReset): void
     {
         $email   = $passwordReset->getEmail();
-
         $resetLink = $this->signedUrl->fromRoute(
             'password-reset',
             ['token' => $passwordReset->getToken()],
@@ -34,7 +32,7 @@ class ForgotPasswordEmail
         $message = (new TemplatedEmail())
             ->from($this->config->get('mailer.from'))
             ->to($email)
-            ->subject('Your Expennies Reset Instructions ')
+            ->subject('Your Expennies Password Reset Instructions')
             ->htmlTemplate('emails/password_reset.html.twig')
             ->context(
                 [

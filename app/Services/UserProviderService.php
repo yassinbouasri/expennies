@@ -12,8 +12,11 @@ use App\Entity\User;
 
 class UserProviderService implements UserProviderServiceInterface
 {
-    public function __construct(private readonly EntityManagerServiceInterface $entityManager, private readonly HashService $hashService)
-    {
+
+    public function __construct(
+        private readonly EntityManagerServiceInterface $entityManager,
+        private readonly HashService $hashService
+    ) {
     }
 
     public function getById(int $userId): ?UserInterface

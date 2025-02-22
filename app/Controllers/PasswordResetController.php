@@ -11,7 +11,6 @@ use App\Mail\ForgotPasswordEmail;
 use App\RequestValidators\ForgotPasswordRequestValidator;
 use App\RequestValidators\ResetPasswordRequestValidator;
 use App\Services\PasswordResetService;
-use DI\NotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -23,7 +22,7 @@ class PasswordResetController
         private readonly RequestValidatorFactoryInterface $requestValidatorFactory,
         private readonly UserProviderServiceInterface $userProviderService,
         private readonly PasswordResetService $passwordResetService,
-        private readonly ForgotPasswordEmail $forgotPasswordEmail,
+        private readonly ForgotPasswordEmail $forgotPasswordEmail
     ) {
     }
 

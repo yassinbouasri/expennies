@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use App\Auth;
 use App\Config;
@@ -20,15 +20,20 @@ use App\RouteEntityBindingStrategy;
 use App\Services\EntityManagerService;
 use App\Services\UserProviderService;
 use App\Session;
+use Clockwork\Clockwork;
 use Clockwork\DataSource\DoctrineDataSource;
 use Clockwork\Storage\FileStorage;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMSetup;
+use DoctrineExtensions\Query\Mysql\DateFormat;
+use DoctrineExtensions\Query\Mysql\Month;
+use DoctrineExtensions\Query\Mysql\Year;
 use League\Flysystem\Filesystem;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\SimpleCache\CacheInterface;
 use Slim\App;
 use Slim\Csrf\Guard;
 use Slim\Factory\AppFactory;
@@ -39,16 +44,18 @@ use Symfony\Bridge\Twig\Mime\BodyRenderer;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
+use Symfony\Component\Cache\Adapter\RedisAdapter;
+use Symfony\Component\Cache\Psr16Cache;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mime\BodyRendererInterface;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\Storage\CacheStorage;
 use Symfony\WebpackEncoreBundle\Asset\EntrypointLookup;
 use Symfony\WebpackEncoreBundle\Asset\TagRenderer;
 use Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension;
 use Twig\Extra\Intl\IntlExtension;
-use Clockwork\Clockwork;
-
 use function DI\create;
 
 return [
@@ -83,6 +90,18 @@ return [
         );
 
         $ormConfig->addFilter('user', UserFilter::class);
+
+        if (class_exists('DoctrineExtensions\Query\Mysql\Year')) {
+            $ormConfig->addCustomDatetimeFunction('YEAR', Year::class);
+        }
+
+        if (class_exists('DoctrineExtensions\Query\Mysql\Month')) {
+            $ormConfig->addCustomDatetimeFunction('MONTH', Month::class);
+        }
+
+        if (class_exists('DoctrineExtensions\Query\Mysql\DateFormat')) {
+            $ormConfig->addCustomStringFunction('DATE_FORMAT', DateFormat::class);
+        }
 
         return new EntityManager(
             DriverManager::getConnection($config->get('doctrine.connection'), $ormConfig),
@@ -134,13 +153,32 @@ return [
         $responseFactory, failureHandler: $csrf->failureHandler(), persistentTokenMode: true
     ),
     Filesystem::class                       => function (Config $config) {
+        $digitalOcean = function (array $options) {
+            $client = new Aws\S3\S3Client(
+                [
+                    'credentials' => [
+                        'key'    => $options['key'],
+                        'secret' => $options['secret'],
+                    ],
+                    'region'      => $options['region'],
+                    'version'     => $options['version'],
+                    'endpoint'    => $options['endpoint'],
+                ]
+            );
+
+            return new League\Flysystem\AwsS3V3\AwsS3V3Adapter(
+                $client,
+                $options['bucket']
+            );
+        };
+
         $adapter = match ($config->get('storage.driver')) {
             StorageDriver::Local => new League\Flysystem\Local\LocalFilesystemAdapter(STORAGE_PATH),
+            StorageDriver::Remote_DO => $digitalOcean($config->get('storage.s3'))
         };
 
         return new League\Flysystem\Filesystem($adapter);
-    },
-    Clockwork::class                        => function (EntityManagerInterface $entityManager) {
+    }, Clockwork::class => function (EntityManagerInterface $entityManager) {
         $clockwork = new Clockwork();
 
         $clockwork->storage(new FileStorage(STORAGE_PATH . '/clockwork'));
@@ -152,10 +190,30 @@ return [
         $entityManager
     ),
     MailerInterface::class                  => function (Config $config) {
+        if ($config->get('mailer.driver') === 'log') {
+            return new \App\Mailer();
+        }
+
         $transport = Transport::fromDsn($config->get('mailer.dsn'));
 
         return new Mailer($transport);
     },
     BodyRendererInterface::class            => fn(Twig $twig) => new BodyRenderer($twig->getEnvironment()),
     RouteParserInterface::class             => fn(App $app) => $app->getRouteCollector()->getRouteParser(),
+    CacheInterface::class                   => fn(RedisAdapter $redisAdapter) => new Psr16Cache($redisAdapter),
+    RedisAdapter::class                     => function (Config $config) {
+        $redis  = new \Redis();
+        $config = $config->get('redis');
+
+        $redis->connect($config['host'], (int) $config['port']);
+
+        if ($config['password']) {
+            $redis->auth($config['password']);
+        }
+
+        return new RedisAdapter($redis);
+    },
+    RateLimiterFactory::class               => fn(RedisAdapter $redisAdapter, Config $config) => new RateLimiterFactory(
+        $config->get('limiter'), new CacheStorage($redisAdapter)
+    ),
 ];

@@ -20,7 +20,7 @@ class ProfileController
         private readonly Twig $twig,
         private readonly RequestValidatorFactoryInterface $requestValidatorFactory,
         private readonly UserProfileService $userProfileService,
-        private readonly PasswordResetService $passwordResetService,
+        private readonly PasswordResetService $passwordResetService
     ) {
     }
 
@@ -40,7 +40,6 @@ class ProfileController
             $request->getParsedBody()
         );
 
-
         $this->userProfileService->update(
             $user,
             new UserProfileData($user->getEmail(), $data['name'], (bool) ($data['twoFactor'] ?? false))
@@ -48,7 +47,7 @@ class ProfileController
 
         return $response;
     }
-    public function updatePassword (Request $request, Response $response): Response
+    public function updatePassword(Request $request, Response $response): Response
     {
         $user = $request->getAttribute('user');
         $data = $this->requestValidatorFactory->make(UpdatePasswordRequestValidator::class)->validate(
@@ -56,9 +55,6 @@ class ProfileController
         );
 
         $this->passwordResetService->updatePassword($user, $data['newPassword']);
-
-
         return $response;
     }
-
 }

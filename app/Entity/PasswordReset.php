@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity, Table(name: 'password_reset')]
+#[Entity, Table(name: 'password_resets')]
 #[HasLifecycleCallbacks]
 class PasswordReset
 {
@@ -90,4 +90,5 @@ class PasswordReset
 
         return $this;
     }
+
 }

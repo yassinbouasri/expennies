@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\RequestValidators;
 
 use App\Contracts\RequestValidatorInterface;
@@ -11,7 +10,6 @@ use Valitron\Validator;
 
 class UpdatePasswordRequestValidator implements RequestValidatorInterface
 {
-
     public function validate(array $data): array
     {
         $user = $data['user'];
