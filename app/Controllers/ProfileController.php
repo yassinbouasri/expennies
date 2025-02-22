@@ -47,7 +47,6 @@ class ProfileController
 
         return $response;
     }
-
     public function updatePassword(Request $request, Response $response): Response
     {
         $user = $request->getAttribute('user');
@@ -56,7 +55,6 @@ class ProfileController
         );
 
         $this->passwordResetService->updatePassword($user, $data['newPassword']);
-
         return $response;
     }
 }

@@ -14,6 +14,7 @@ class PasswordResetService
     public function __construct(
         private readonly EntityManagerServiceInterface $entityManagerService,
         private readonly UserProviderServiceInterface $userProviderService
+
     ) {
     }
 

@@ -90,4 +90,5 @@ class PasswordReset
 
         return $this;
     }
+
 }

@@ -12,6 +12,7 @@ use App\Entity\User;
 
 class UserProviderService implements UserProviderServiceInterface
 {
+
     public function __construct(
         private readonly EntityManagerServiceInterface $entityManager,
         private readonly HashService $hashService
@@ -48,10 +49,10 @@ class UserProviderService implements UserProviderServiceInterface
         $this->entityManager->sync($user);
     }
 
+
     public function updatePassword(UserInterface $user, string $password): void
     {
         $user->setPassword($this->hashService->hashPassword($password));
-
         $this->entityManager->sync($user);
     }
 }

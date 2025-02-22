@@ -82,5 +82,6 @@ class PasswordResetController
         $this->passwordResetService->updatePassword($user, $data['password']);
 
         return $response;
+
     }
 }
