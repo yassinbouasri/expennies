@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use App\Auth;
 use App\Config;
@@ -20,6 +20,7 @@ use App\RouteEntityBindingStrategy;
 use App\Services\EntityManagerService;
 use App\Services\UserProviderService;
 use App\Session;
+use Clockwork\Clockwork;
 use Clockwork\DataSource\DoctrineDataSource;
 use Clockwork\Storage\FileStorage;
 use Doctrine\DBAL\DriverManager;
@@ -55,8 +56,6 @@ use Symfony\WebpackEncoreBundle\Asset\EntrypointLookup;
 use Symfony\WebpackEncoreBundle\Asset\TagRenderer;
 use Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension;
 use Twig\Extra\Intl\IntlExtension;
-use Clockwork\Clockwork;
-
 use function DI\create;
 
 return [
@@ -179,8 +178,7 @@ return [
         };
 
         return new League\Flysystem\Filesystem($adapter);
-    },
-    Clockwork::class                        => function (EntityManagerInterface $entityManager) {
+    }, Clockwork::class => function (EntityManagerInterface $entityManager) {
         $clockwork = new Clockwork();
 
         $clockwork->storage(new FileStorage(STORAGE_PATH . '/clockwork'));

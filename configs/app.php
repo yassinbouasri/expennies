@@ -73,4 +73,5 @@ return [
         'interval' => '1 minute',
         'limit'    => 25,
     ],
+    'trusted_proxies'      => []
 ];

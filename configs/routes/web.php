@@ -68,6 +68,7 @@ return function (App $app) {
         $group->get('/verify/{id}/{hash}', [VerifyController::class, 'verify'])
               ->setName('verify')
               ->add(ValidateSignatureMiddleware::class);
+
         $group->post('/verify', [VerifyController::class, 'resend'])
               ->setName('resendVerification')
               ->add(RateLimitMiddleware::class);
@@ -76,6 +77,7 @@ return function (App $app) {
     $app->group('', function (RouteCollectorProxy $guest) {
         $guest->get('/login', [AuthController::class, 'loginView']);
         $guest->get('/register', [AuthController::class, 'registerView']);
+      
         $guest->post('/login', [AuthController::class, 'logIn'])
               ->setName('logIn')
               ->add(RateLimitMiddleware::class);
