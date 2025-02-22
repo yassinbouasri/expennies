@@ -108,5 +108,6 @@ class CategoryService
         $this->cache->set($cachedKey, $result, 3600);
 
         return $result;
+
     }
 }
